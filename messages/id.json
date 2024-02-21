@@ -1,0 +1,58 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "input": {
+    "button": {
+      "create": "Tambah",
+      "update": "Update",
+      "delete": "Delete",
+      "view": "View",
+      "search": "Cari",
+      "export": "Export",
+      "close": "Close",
+      "save": "Save",
+      "list": "List",
+      "filter": "Filter",
+      "search_place_holder": "masukkan kata pencarian..."
+    }
+  },
+  "user": {
+    "users": {
+      "title": "User",
+      "code": "Kode",
+      "email": "Email",
+      "password": "Password",
+      "c_password": "Konfirmasi Password",
+      "contact_id": "Contact",
+      "role_id": "Role",
+      "status": "Status",
+      "type": "Tipe",
+      "register": "Register",
+      "type_option": {
+        "member": "Member",
+        "staff": "Collector",
+        "admin": "Admin"
+      }
+    },
+    "contacts": {
+      "title": "Contact",
+      "name": "Name",
+      "card_id": "ID Card",
+      "birthday": "Birthday",
+      "sex": "Sex",
+      "email": "Email",
+      "phone": "Phone",
+      "phone2": "Phone 2",
+      "description": "Description"
+    }
+  },
+  "header": {
+    "1": "Home page",
+    "2": "House",
+    "3": "About Us",
+    "4": "Language",
+    "5": "Company History",
+    "6": "Vision and mission"
+  }
+}
