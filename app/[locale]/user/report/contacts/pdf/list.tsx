@@ -12,7 +12,7 @@ const UserPdf = (users: any) => {
         autoTable(doc, {
             head: [['ID', 'Code', 'Email', 'Type']],
             body:
-                usersData.map(({ id, code, email, type }) => {
+                usersData.map(({ id, code, email, type } : { id : any, code : any, email : any, type:any }) => {
                     return [
                         id,
                         code,

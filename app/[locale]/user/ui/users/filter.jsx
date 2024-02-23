@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SyntheticEvent, useState } from "react"
 
-export default function Filter({ dataFilter, messagesIntl }: { dataFilter: any,messagesIntl: any; }) {
+export default function Filter({ dataFilter, messagesIntl }) {
     //console.log('dataFilter lemp',dataFilter)
     const [title, setTitle] = useState("22");
     const [modal, setModal] = useState(false);
@@ -30,20 +30,20 @@ export default function Filter({ dataFilter, messagesIntl }: { dataFilter: any,m
         setModal(!modal);
     }
 
-    function handleForm(key: any, value: any) {
+    function handleForm(key, value) {
         setForm({
             ...form,
             [key]: value
         })
     }
 
-    async function handleSubmit(e: SyntheticEvent) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setIsMutating(true)
-        // const params: any = new URLSearchParams(searchParams);
-        // params.set('datafilter', JSON.stringify(form));
-        // params.delete("addresponse");
-        // router.push(`${pathname}?${params}`);
+        const params = new URLSearchParams(searchParams);
+        params.set('datafilter', JSON.stringify(form));
+        params.delete("addresponse");
+        router.push(`${pathname}?${params}`);
         setIsMutating(false)
         // setTitle("");
         // router.refresh();
@@ -78,27 +78,27 @@ export default function Filter({ dataFilter, messagesIntl }: { dataFilter: any,m
                             <form onSubmit={handleSubmit}>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.status}</label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.status}</label>
                                     <select onChange={(e) => handleForm('status', e.target.value)} className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                                        <option value='' selected={(form.status == '') ? true : false}>{messagesIntl.user.contacts.status}</option>
-                                        <option value='activated' selected={(form.status == 'activated') ? true : false}>Active</option>
-                                        <option value='register' selected={(form.status == 'register') ? true : false}>Pending</option>
-                                        <option value='close' selected={(form.status == 'close') ? true : false}>Close</option>
+                                        <option value='' selected={(form.status == '') ? 'selected' : ''}>{messagesIntl.user.users.status}</option>
+                                        <option value='activated' selected={(form.status == 'activated') ? 'selected' : ''}>Active</option>
+                                        <option value='register' selected={(form.status == 'register') ? 'selected' : ''}>Pending</option>
+                                        <option value='close' selected={(form.status == 'close') ? 'selected' : ''}>Close</option>
                                     </select>
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.type}</label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.type}</label>
                                     <select onChange={(e) => handleForm('type', e.target.value)} className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                                        <option value='' selected={(form.type == '') ? true : false}>{messagesIntl.user.contacts.type}</option>
-                                        <option value='member' selected={(form.type == 'member') ? true : false}>{messagesIntl.user.contacts.type_option.member}</option>
-                                        <option value='staff' selected={(form.type == 'staff') ? true : false}>{messagesIntl.user.contacts.type_option.staff}</option>
-                                        <option value='admin' selected={(form.type == 'admin') ? true : false}>{messagesIntl.user.contacts.type_option.admin}</option>
+                                        <option value='' selected={(form.type == '') ? 'selected' : ''}>{messagesIntl.user.users.type}</option>
+                                        <option value='member' selected={(form.type == 'member') ? 'selected' : ''}>{messagesIntl.user.users.type_option.member}</option>
+                                        <option value='staff' selected={(form.type == 'staff') ? 'selected' : ''}>{messagesIntl.user.users.type_option.staff}</option>
+                                        <option value='admin' selected={(form.type == 'admin') ? 'selected' : ''}>{messagesIntl.user.users.type_option.admin}</option>
                                     </select>
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.register}</label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.register}</label>
                                     <div className="flex flex-row gap-2">
                                         <input
                                             value={form.register_start}
@@ -115,17 +115,17 @@ export default function Filter({ dataFilter, messagesIntl }: { dataFilter: any,m
                                 <label className="pt-5 mb-3 block text-black dark:text-white">Order By</label>
                                 <div className="flex flex-row gap-2">
                                     <select onChange={(e) => handleForm('order_by', e.target.value)} className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                                        <option value='' selected={(form.order_by == '') ? true : false}>Select Column</option>
-                                        <option value='email' selected={(form.order_by == 'email') ? true : false}>{messagesIntl.user.contacts.email}</option>
-                                        <option value='code' selected={(form.order_by == 'code') ? true : false}>{messagesIntl.user.contacts.code}</option>
-                                        <option value='register' selected={(form.order_by == 'register') ? true : false}>{messagesIntl.user.contacts.register}</option>
-                                        <option value='status' selected={(form.order_by == 'status') ? true : false}>{messagesIntl.user.contacts.status}</option>
-                                        <option value='type' selected={(form.order_by == 'type') ? true : false}>{messagesIntl.user.contacts.type}</option>
+                                        <option value='' selected={(form.order_by == '') ? 'selected' : ''}>Select Column</option>
+                                        <option value='email' selected={(form.order_by == 'email') ? 'selected' : ''}>{messagesIntl.user.users.email}</option>
+                                        <option value='code' selected={(form.order_by == 'code') ? 'selected' : ''}>{messagesIntl.user.users.code}</option>
+                                        <option value='register' selected={(form.order_by == 'register') ? 'selected' : ''}>{messagesIntl.user.users.register}</option>
+                                        <option value='status' selected={(form.order_by == 'status') ? 'selected' : ''}>{messagesIntl.user.users.status}</option>
+                                        <option value='type' selected={(form.order_by == 'type') ? 'selected' : ''}>{messagesIntl.user.users.type}</option>
                                     </select>
                                     <select onChange={(e) => handleForm('order_by_dir', e.target.value)} className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                                        <option value='' selected={(form.order_by_dir == '') ? true : false}>Order by</option>
-                                        <option value='ASC' selected={(form.order_by_dir == 'ASC') ? true : false}>ASC</option>
-                                        <option value='DESC' selected={(form.order_by_dir == 'DESC') ? true : false}>DESC</option>
+                                        <option value='' selected={(form.order_by_dir == '') ? 'selected' : ''}>Order by</option>
+                                        <option value='ASC' selected={(form.order_by_dir == 'ASC') ? 'selected' : ''}>ASC</option>
+                                        <option value='DESC' selected={(form.order_by_dir == 'DESC') ? 'selected' : ''}>DESC</option>
                                     </select>
                                 </div>
 

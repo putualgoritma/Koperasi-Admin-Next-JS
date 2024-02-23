@@ -64,7 +64,7 @@ async function Index({
   if (dataFilter) {
     dataQry += '&register_start=' + dataFilter.register_start + '&register_end=' + dataFilter.register_end + '&type=' + dataFilter.type + '&status=' + dataFilter.status + '&order_by=' + dataFilter.order_by + '&order_by_dir=' + dataFilter.order_by_dir;
   }
-  const query = process.env.BASE_HOST + process.env.API_USERS + '/?page=' + currentPage + "&per_page=" + perPage + dataQry
+  const query = "https://koperasi-admin.younacosmetic.com/" + process.env.API_USERS + '/?page=' + currentPage + "&per_page=" + perPage + dataQry
 
   const listData = await listUsers(query);
   const totalData = listData.total;

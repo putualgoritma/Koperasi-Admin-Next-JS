@@ -21,7 +21,7 @@ export async function listUsers(qry: string) {
 export async function storeUser(dataRequest: any) {
     const session = await getServerSession(options)
     try {
-        const res = await fetch(process.env.BASE_HOST + process.env.API_USER_STORE, {
+        const res = await fetch("https://koperasi-admin.younacosmetic.com/" + process.env.API_USER_STORE, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -46,7 +46,7 @@ export async function storeUser(dataRequest: any) {
 export async function updateUser(dataRequest: any) {
     const session = await getServerSession(options)
     try {
-        const res = await fetch(process.env.BASE_HOST + process.env.API_USER_UPDATE, {
+        const res = await fetch("https://koperasi-admin.younacosmetic.com/" + process.env.API_USER_UPDATE, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
