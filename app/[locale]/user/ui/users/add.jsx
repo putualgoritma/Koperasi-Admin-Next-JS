@@ -3,9 +3,9 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { SyntheticEvent, useEffect, useState, useRef } from "react"
 import { storeUser } from '@/app/[locale]/user/lib/dataApi';
-import Insert from "@/app/[locale]/user/ui/contacts/insert";
+import Insert from "@/app/[locale]/user/ui/users/insert";
 
-export default function Add({ messagesIntl }: { messagesIntl: any; }) {
+export default function Add({ messagesIntl }) {
 
     const cPasswordRef = useRef(null);
     const [data, setData] = useState({
@@ -31,7 +31,6 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
     const router = useRouter();
 
     const searchParams = useSearchParams();
-    
     //generate path
     let pathname = usePathname();
     const pathnameArr = pathname.split("/");
@@ -65,18 +64,18 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
     function handleChange() {
         setModal(!modal);
     }
-    async function handleSubmit(e: SyntheticEvent) {
+    async function handleSubmit(e) {
         e.preventDefault();
         if (data.password != data.c_password) {
             alert("Please confirm password");
-            // cPasswordRef.current.focus();
+            cPasswordRef.current.focus();
             setFormError(true)
             return
         }
         //console.log("data dari form...: ", data)
         setIsMutating(true)
 
-        let dataRequest: any = {
+        let dataRequest = {
             user_data: {
                 email: data.email,
                 password: data.password,
@@ -93,15 +92,15 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
         resetData()
         // router.refresh();
         setModal(false)
-        // const params: any = new URLSearchParams(searchParams);
-        // params.set('addresponse', JSON.stringify(dataUser));
-        // //console.log('uriiii...', `${pathname}?${params.toString()}`)
-        // router.push(`${pathname}?${params}`);
+        const params = new URLSearchParams(searchParams);
+        params.set('addresponse', JSON.stringify(dataUser));
+        //console.log('uriiii...', `${pathname}?${params.toString()}`)
+        router.push(`${pathname}?${params}`);
     }
 
     const [tab, setTab] = useState(1)
 
-    const [file, setFile] = useState<File>()
+    const [file, setFile] = useState()
     const [imglabel, setImglabel] = useState({
         label1: 'Click to upload',
         label2: 'or drag and drop',
@@ -151,7 +150,7 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
                             <div className={`overflow-y-scroll h-75 custom-scrollbar ${tab === 1 ? "" : "hidden"}`}>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.email} <span className="text-meta-1">*</span></label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.email} <span className="text-meta-1">*</span></label>
                                     <input
                                         value={data.email}
                                         onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -162,7 +161,7 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.password} <span className="text-meta-1">*</span></label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.password} <span className="text-meta-1">*</span></label>
                                     <input
                                         value={data.password}
                                         onChange={(e) => setData({ ...data, password: e.target.value })}
@@ -173,7 +172,7 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.c_password} <span className="text-meta-1">*</span></label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.c_password} <span className="text-meta-1">*</span></label>
                                     <input
                                         ref={cPasswordRef}
                                         value={data.c_password}
@@ -188,7 +187,7 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.register}</label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.register}</label>
                                     <input
                                         value={data.register}
                                         onChange={(e) => setData({ ...data, register: e.target.value })}
@@ -196,12 +195,12 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
                                 </div>
 
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.type}</label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.type}</label>
                                     <select onChange={(e) => setData({ ...data, type: e.target.value })} className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                                        <option disabled selected >{messagesIntl.user.contacts.type}</option>
-                                        <option value={"member"}>{messagesIntl.user.contacts.type_option.member}</option>
-                                        <option value={"staff"}>{messagesIntl.user.contacts.type_option.staff}</option>
-                                        <option value={"admin"}>{messagesIntl.user.contacts.type_option.admin}</option>
+                                        <option disabled selected >{messagesIntl.user.users.type}</option>
+                                        <option value={"member"}>{messagesIntl.user.users.type_option.member}</option>
+                                        <option value={"staff"}>{messagesIntl.user.users.type_option.staff}</option>
+                                        <option value={"admin"}>{messagesIntl.user.users.type_option.admin}</option>
                                     </select>
                                 </div>
 
@@ -211,7 +210,7 @@ export default function Add({ messagesIntl }: { messagesIntl: any; }) {
                             {/* tab 2 start */}
                             <div className={`overflow-y-scroll h-75 custom-scrollbar ${tab === 2 ? "" : "hidden"}`}>
                                 <div className="form-control">
-                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.contacts.contact_id}</label>
+                                    <label className="pt-5 mb-3 block text-black dark:text-white">{messagesIntl.user.users.contact_id}</label>
                                     <div className="flex gap-2">
                                         <input
                                             value={data.contact.name}

@@ -62,7 +62,9 @@ export const options = {
           //   );
 
           const user = await fetch(
-            `${process.env.BASE_HOST}${process.env.API_LOGIN}`,
+            `${"https://koperasi-admin.younacosmetic.com/"}${
+              process.env.API_LOGIN
+            }`,
             {
               method: "POST",
               headers: {

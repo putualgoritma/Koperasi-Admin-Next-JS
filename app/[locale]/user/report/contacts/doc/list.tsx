@@ -38,7 +38,7 @@ const UserDoc = (users: any) => {
         last_name: "Doe",
         phone: "0652455478",
         description: "New Website",
-        collect: usersData.map(item => ({
+        collect: usersData.map((item : any) => ({
           id: item.id,
           code: item.code,
           email: item.email
